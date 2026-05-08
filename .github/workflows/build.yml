@@ -51,26 +51,16 @@ jobs:
             - name: Install rust target
               run: rustup target add ${{ matrix.target }}
 
-            # ------------------- 关键修改开始 -------------------
-            # 1. 先安装 Node.js 22，确保环境正确
+
             - name: Sync node version and setup cache
               uses: actions/setup-node@v4
               with:
                   node-version: 22
                   cache: pnpm
 
-            # 2. 再安装 pnpm，此时会自动使用 Node.js 22
             - uses: pnpm/action-setup@v3
               with:
-                  version: latest
-
-            # 3. 加一个版本验证步骤，方便你排查问题
-            - name: Verify Node.js and pnpm versions
-              run: |
-                  node -v
-                  pnpm -v
-            # ------------------- 关键修改结束 -------------------
-
+                  version: 9
             - name: Install frontend dependencies
               run: pnpm install # change this to npm, pnpm or bun depending on which one you use.
 
