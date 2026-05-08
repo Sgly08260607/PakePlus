@@ -52,11 +52,6 @@ jobs:
               run: rustup target add ${{ matrix.target }}
 
 
-            - name: Sync node version and setup cache
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 22
-                  cache: pnpm
 
             - uses: pnpm/action-setup@v3
               with:
